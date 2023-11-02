@@ -100,3 +100,12 @@ my_table2 = my_DB.search('countries')
 my_table3 = my_table1.join(my_table2, 'country')
 my_table3_filtered = my_table3.filter(lambda x: x['EU'] == 'no').filter(lambda x: float(x['temperature']) < 5.0)
 print(my_table3_filtered.table)
+
+print()
+my_table3_filtered = my_table3.filter(lambda x: x['coastline'] == 'no').filter(lambda x: x['EU'] == 'yes')
+print('Min temperature', my_table3_filtered.aggregate(lambda x: min(x), 'temperature'))
+print('Max temperature', my_table3_filtered.aggregate(lambda x: max(x), 'temperature'))
+
+print()
+print('Min latitude', my_table3.aggregate(lambda x: min(x), 'latitude'))
+print('Max latitude', my_table3.aggregate(lambda x: max(x), 'latitude'))
